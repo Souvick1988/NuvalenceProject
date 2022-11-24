@@ -2,6 +2,7 @@ package org.nuvalence.application.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.Rectangle;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,6 +15,7 @@ import org.junit.*;
 import org.nuvalence.application.RectangleFeatureApplication;
 import org.nuvalence.application.exception.ShapeException;
 import org.nuvalence.application.util.Constants;
+import org.nuvalence.test.utility.PaintShapes;
 import org.nuvalence.test.utility.Util;
 
 public class RectangleFeatureApplicationTest {
@@ -47,12 +49,14 @@ public class RectangleFeatureApplicationTest {
 	public void executeForIntersectionScenarioTest() {
 		try {
 			outputMap = RectangleFeatureApplication.execute(inputForIntersectionMap);
+			String intersectionPoints="0";
 			for (String key : outputMap.keySet()) {
 				if (key.contains(Constants.IS_INTERSECTS)) {
 					assertEquals("TRUE", outputMap.get(key));
 				}
 				if (key.contains(Constants.INTERSECT_POINTS)) {
-					assertEquals("TRUE", containValidCoordinates(outputMap.get(key)));
+					intersectionPoints = containValidCoordinates(outputMap.get(key));
+					assertEquals("TRUE", intersectionPoints);
 				}
 				if (key.contains(Constants.IS_CONTAIN)) {
 					assertEquals("FALSE", outputMap.get(key));
@@ -61,12 +65,15 @@ public class RectangleFeatureApplicationTest {
 					assertEquals(Constants.NOT_ADJACENT, outputMap.get(key));
 				}
 			}
+			//PaintShapes.showGUI(Util.createRectangle(inputForIntersectionMap), "INTERSECTION - TRUE", intersectionPoints,"CONTAINMENT-FALSE", "NO ADJACENT","INTERSECTION-SCENARIO");
+			//Thread.sleep(10000);
 
-		} catch (ShapeException e) { // TODO Auto-generated catch block
+		} catch (ShapeException e) { 
 			e.printStackTrace();
 		}
 	}
 
+	
 	@Test
 	public void executeForContainScenarioTest() {
 		try {

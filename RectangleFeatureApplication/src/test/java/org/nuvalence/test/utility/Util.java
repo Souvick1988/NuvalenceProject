@@ -3,6 +3,7 @@
  */
 package org.nuvalence.test.utility;
 
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -107,8 +108,7 @@ public class Util {
 
 		return inputMap;
 	}
-	
-	
+
 	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForContainmentScenario() throws ShapeException {
 
 		InputStream input;
@@ -134,9 +134,9 @@ public class Util {
 
 		return inputMap;
 	}
-	
-	
-	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForPartialAdjacentScenario() throws ShapeException {
+
+	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForPartialAdjacentScenario()
+			throws ShapeException {
 
 		InputStream input;
 		ConcurrentMap<Integer, List<Integer>> inputMap = new ConcurrentHashMap<Integer, List<Integer>>();
@@ -161,8 +161,9 @@ public class Util {
 
 		return inputMap;
 	}
-	
-	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForProperAdjacentScenario() throws ShapeException {
+
+	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForProperAdjacentScenario()
+			throws ShapeException {
 
 		InputStream input;
 		ConcurrentMap<Integer, List<Integer>> inputMap = new ConcurrentHashMap<Integer, List<Integer>>();
@@ -187,7 +188,7 @@ public class Util {
 
 		return inputMap;
 	}
-	
+
 	public static ConcurrentMap<Integer, List<Integer>> getInputFromFileForSublineScenario() throws ShapeException {
 
 		InputStream input;
@@ -213,6 +214,19 @@ public class Util {
 
 		return inputMap;
 	}
-	
+
+	public static List<Rectangle> createRectangle(ConcurrentMap<Integer, List<Integer>> coordinateMap) throws ShapeException {
+		List<Rectangle> rectList = new ArrayList<Rectangle>();
+		if (coordinateMap != null && coordinateMap.keySet().size() > 0) {
+			List<Integer> coordinateList = new ArrayList<Integer>();
+			coordinateMap.keySet().stream().forEach(coordinateKey -> {
+				coordinateList.addAll(coordinateMap.get(coordinateKey));
+				rectList.add(new Rectangle(coordinateList.get(0), coordinateList.get(1), coordinateList.get(2),
+						coordinateList.get(3)));
+			});
+			
+		}
+		return rectList;
+	}
 
 }

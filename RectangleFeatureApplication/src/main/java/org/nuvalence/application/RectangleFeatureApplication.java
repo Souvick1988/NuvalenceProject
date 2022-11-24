@@ -14,7 +14,6 @@ import org.nuvalence.application.service.RectangleFeatureService;
 import org.nuvalence.application.service.impl.Rectangle;
 import org.nuvalence.application.service.impl.RectangleFeatureServiceImpl;
 import org.nuvalence.application.util.Constants;
-import org.nuvalence.application.util.PaintShapes;
 import org.nuvalence.application.util.Utility;
 
 /**
@@ -78,7 +77,6 @@ public class RectangleFeatureApplication {
 				if(isContain) outputMap.put(Constants.IS_CONTAIN, "TRUE");
 					else outputMap.put(Constants.IS_CONTAIN, "FALSE");
 				String adjacentType = service.isOneRectangleAdjacentToOther(rectList);
-				System.out.println("adjacentType : "+adjacentType);
 				outputMap.put(Constants.IS_ADJACENT, adjacentType);
 				// PaintShapes.showGUI(rectList, intersectMap, isContain, adjacentType);
 
