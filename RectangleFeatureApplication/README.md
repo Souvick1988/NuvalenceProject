@@ -25,6 +25,9 @@ SPECIFICATION AND REQUIREMENTS
 
 DESIGN
 
+JDK Version 1.8 and above
+dependecy - hamcrest-core & junit
+
 		Implement a class named RectangleFeatureApplication at the root package, which has a main method named execute() which will expect coordinates for rectangles in a map (Integer, List<Integer>). execute() will read the data from input param and orchestrate the execution flow to initialize the rectangles & invokes service methods to idenfy the intersection, containment & adjacecy. 
 
 		The Shape class
