@@ -73,11 +73,8 @@ public class RectangleFeatureApplication {
 				service = new RectangleFeatureServiceImpl();
 				ConcurrentMap<String, String> intersectMap = service.isRectangleIntersecting(rectList);
 				intersectMap.forEach((k, v) -> outputMap.put(k, v));
-				boolean isContain = service.isOneRectangleContainingOther(rectList);
-				if(isContain) outputMap.put(Constants.IS_CONTAIN, "TRUE");
-					else outputMap.put(Constants.IS_CONTAIN, "FALSE");
-				String adjacentType = service.isOneRectangleAdjacentToOther(rectList);
-				outputMap.put(Constants.IS_ADJACENT, adjacentType);
+				outputMap.put(Constants.IS_CONTAIN, String.valueOf(service.isOneRectangleContainingOther(rectList)).toUpperCase());
+				outputMap.put(Constants.IS_ADJACENT, service.isOneRectangleAdjacentToOther(rectList));
 				// PaintShapes.showGUI(rectList, intersectMap, isContain, adjacentType);
 
 			}
